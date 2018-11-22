@@ -27,7 +27,8 @@ app.use((req, res, next) => {
         const bearer = bearerHeader.split(' ');
         req.token = bearer[1];
         next();
-    } else {
+    } else if (req.originalUrl !== '/users/login') {
+        console.log(req.originalUrl);
         res.sendStatus(403);
     }
 });
