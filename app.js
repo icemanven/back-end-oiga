@@ -30,6 +30,8 @@ app.use((req, res, next) => {
     } else if (req.originalUrl !== '/users/login') {
         console.log(req.originalUrl);
         res.sendStatus(403);
+    } else {
+        next();
     }
 });
 app.use('/products', apiProducts);
