@@ -30,7 +30,8 @@
     "mongoose": "^5.3.13",
     "mongoose-type-email": "^1.0.9",
     "morgan": "^1.9.1",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "jsonwebtoken": "^8.4.0"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
