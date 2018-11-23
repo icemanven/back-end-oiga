@@ -9,13 +9,13 @@ router.options('*', cors());
 
 /* list */
 router.get('/', cors(), (req, res, next) => {
-    jwt.verify(req.token, 'secretkey', (err, auth) => {
+    jwt.verify(req.token, 'secretkey', (err, { user }) => {
         if (err) res.sendStatus(403);
-        Product.find( (err, products) => {
+        Product.find( (errP, products) => {
             if (!products) {
                 res.json([]);
             } else {
-                if (err) return next(err);
+                if (errP) return next(errP);
                 res.json(products);
             }
         });
@@ -24,16 +24,16 @@ router.get('/', cors(), (req, res, next) => {
 
 /* list by a property*/
 router.get('/:prop/:valueprop', cors(), (req, res, next) => {
-    jwt.verify(req.token, 'secretkey', (err, auth) => {
+    jwt.verify(req.token, 'secretkey', (err, { user }) => {
         if (err) res.sendStatus(403);
         const { prop, valueprop} = req.params;
         const props = {};
         props[prop] = valueprop;
-        Product.find(props, (err, products) => {
+        Product.find(props, (errP, products) => {
             if (!products) {
                 res.json([]);
             } else {
-                if (err) return next(err);
+                if (errP) return next(errP);
                 return res.json(products);
             }
         });
@@ -42,10 +42,10 @@ router.get('/:prop/:valueprop', cors(), (req, res, next) => {
 
 /* list by id */
 router.get('/:id', cors(), (req, res, next) =>{
-    jwt.verify(req.token, 'secretkey', (err, auth) => {
+    jwt.verify(req.token, 'secretkey', (err, { user }) => {
         if (err) res.sendStatus(403);
-        Product.findById(req.params.id,  (err, post) => {
-            if (err) return next(err);
+        Product.findById(req.params.id,  (errP, post) => {
+            if (errP) return next(errP);
             res.json(post);
         });
     });
@@ -53,10 +53,10 @@ router.get('/:id', cors(), (req, res, next) =>{
 
 /* create new */
 router.post('/', cors(), (req, res, next) => {
-    jwt.verify(req.token, 'secretkey', (err, auth) => {
-        if (err || auth.type !== 'admin') res.sendStatus(403);
-        Product.create(req.body,  (err, post) => {
-            if (err) return next(err);
+    jwt.verify(req.token, 'secretkey', (err, { user }) => {
+        if (err || user.type !== 'admin') res.sendStatus(403);
+        Product.create(req.body,  (errP, post) => {
+            if (errP) return next(errP);
             res.json(post);
         });
     });
@@ -64,10 +64,10 @@ router.post('/', cors(), (req, res, next) => {
 
 /* update */
 router.put('/:id', cors(),(req, res, next) => {
-    jwt.verify(req.token, 'secretkey', (err, auth) => {
-        if (err || auth.type !== 'admin') res.sendStatus(403);
-        Product.findByIdAndUpdate(req.params.id, req.body,  (err, post) => {
-            if (err) return next(err);
+    jwt.verify(req.token, 'secretkey', (err, { user }) => {
+        if (err || user.type !== 'admin') res.sendStatus(403);
+        Product.findByIdAndUpdate(req.params.id, req.body,  (errP, post) => {
+            if (errP) return next(errP);
             res.json(post);
         });
     });
@@ -75,10 +75,10 @@ router.put('/:id', cors(),(req, res, next) => {
 
 /* delete */
 router.delete('/:id', cors(), (req, res, next) => {
-    jwt.verify(req.token, 'secretkey', (err, auth) => {
-        if (err || auth.type !== 'admin') res.sendStatus(403);
-        Product.findByIdAndRemove(req.params.id, req.body,  (err, post) => {
-            if (err) return next(err);
+    jwt.verify(req.token, 'secretkey', (err, { user }) => {
+        if (err || user.type !== 'admin') res.sendStatus(403);
+        Product.findByIdAndRemove(req.params.id, req.body,  (errP, post) => {
+            if (errP) return next(errP);
             res.json(post);
         });
     });

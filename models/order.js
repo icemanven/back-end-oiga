@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema} = mongoose;
-require('mongoose-type-email');
 const Product = require('./product');
 const User = require('./user');
 

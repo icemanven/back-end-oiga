@@ -5,7 +5,8 @@
   "main": "bin/www",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set PORT=9900 && node ./bin/www"
+    "start": "set PORT=9900 && node ./bin/www",
+    "eslint": "./node_modules/.bin/eslint --init"
   },
   "keywords": [
     "jose",
@@ -28,9 +29,7 @@
     "http-errors": "^1.7.1",
     "mocha": "^5.2.0",
     "mongoose": "^5.3.13",
-    "mongoose-type-email": "^1.0.9",
     "morgan": "^1.9.1",
-    "serve-favicon": "^2.5.0",
     "jsonwebtoken": "^8.4.0"
   },
   "devDependencies": {
