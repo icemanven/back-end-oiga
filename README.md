@@ -1,4 +1,11 @@
-"# back-end-oiga" 
+"# back-end-oiga"
+
+**Install**
+npm install
+**Eslint config**
+npm run eslint
+**start server**
+npm start
 
 **USERS**
 
